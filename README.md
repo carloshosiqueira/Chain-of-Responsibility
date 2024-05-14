@@ -96,3 +96,9 @@ validationHandler.handleEmail(email);
 ## Diagrama de Classes
 
 <img src="./Diagrama de Classes.jpg">
+
+### Partipantes do grupo
+
+https://github.com/carloshosiqueira <br>
+https://github.com/BuenoOtavio <br>
+https://github.com/FefeMattoso
