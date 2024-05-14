@@ -8,12 +8,18 @@ Ao desenvolver um sistema de registro para um serviço online, é essencial gara
 
 O padrão de design Chain of Responsibility é uma escolha adequada para lidar com essas situações-problema de forma eficiente. Cada etapa do processo de verificação de e-mail pode ser tratada por um "handler" específico. Cada handler decide se pode lidar com a solicitação ou se deve passá-la para o próximo handler na cadeia. Isso permite uma implementação flexível e extensível do processo de verificação de e-mail.
 
+## Prós 
 
-## Diagrama de Classes
+1. Simplicidade na adição ou remoção de handlers: Você pode adicionar ou remover novos handlers na cadeia sem modificar o código do remetente ou dos outros handlers existentes, facilitando a manutenção e extensão do sistema.
+2. Permite vários processamentos: Cada handler na cadeia tem a oportunidade de processar a solicitação ou passá-la para o próximo handler. Isso possibilita a implementação de lógicas complexas de decisão distribuídas entre vários objetos.
+3. Suporte a princípios de responsabilidade única (SRP): Cada handler pode se concentrar em uma única responsabilidade ou tipo de solicitação, o que facilita a manutenção e compreensão do código.
 
-<img src="./Diagrama de Classes.jpg">
+## Contra
 
-
+1. Garantia de processamento: Não há garantia de que a solicitação será processada na cadeia. Se nenhum dos handlers na cadeia conseguir lidar com a solicitação, ela será ignorada, o que pode ser um problema se todas as solicitações precisarem ser processadas de alguma forma.
+2. Complexidade da cadeia: Uma cadeia muito longa ou complexa pode dificultar a compreensão do fluxo de execução e a depuração de problemas, especialmente se houver muitos handlers envolvidos.
+3. Potencial para loops infinitos: Se a cadeia não for configurada corretamente (por exemplo, se um handler tentar chamar a si mesmo recursivamente), pode ocorrer um loop infinito, o que pode travar o sistema.
+   
 ## Exemplo de Implementação em JavaScript
 
 Aqui está um exemplo de implementação do padrão Chain of Responsibility em Javascript para resolver o problema de verificação de e-mail:
@@ -87,14 +93,6 @@ validationHandler.handleEmail(email);
 
 ```
 
-## Prós 
+## Diagrama de Classes
 
-1. Simplicidade na adição ou remoção de handlers: Você pode adicionar ou remover novos handlers na cadeia sem modificar o código do remetente ou dos outros handlers existentes, facilitando a manutenção e extensão do sistema.
-2. Permite vários processamentos: Cada handler na cadeia tem a oportunidade de processar a solicitação ou passá-la para o próximo handler. Isso possibilita a implementação de lógicas complexas de decisão distribuídas entre vários objetos.
-3. Suporte a princípios de responsabilidade única (SRP): Cada handler pode se concentrar em uma única responsabilidade ou tipo de solicitação, o que facilita a manutenção e compreensão do código.
-
-## Contra
-
-1. Garantia de processamento: Não há garantia de que a solicitação será processada na cadeia. Se nenhum dos handlers na cadeia conseguir lidar com a solicitação, ela será ignorada, o que pode ser um problema se todas as solicitações precisarem ser processadas de alguma forma.
-2. Complexidade da cadeia: Uma cadeia muito longa ou complexa pode dificultar a compreensão do fluxo de execução e a depuração de problemas, especialmente se houver muitos handlers envolvidos.
-3. Potencial para loops infinitos: Se a cadeia não for configurada corretamente (por exemplo, se um handler tentar chamar a si mesmo recursivamente), pode ocorrer um loop infinito, o que pode travar o sistema.
+<img src="./Diagrama de Classes.jpg">
